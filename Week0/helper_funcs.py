@@ -35,15 +35,15 @@ def plot_all(t_range, v, n, raster=None, spikes=None, spikes_mean=None):
 
     ax1 = plt.subplot(3, 1, 1)
     for j in range(n):
-        plt.scatter(t_range, v[j], color="k", marker=".", alpha=0.01)
-    plt.plot(t_range, v_mean, 'C1', alpha=0.8, linewidth=3)
+        plt.plot(t_range, v[j], color="k", alpha=0.5)
+    # plt.plot(t_range, v_mean, 'C1', alpha=0.8, linewidth=3)
     plt.xticks([])
     plt.ylabel(r'$V_m$ (V)')
 
     if raster is not None:
-        plt.subplot(3, 1, 2)
+        plt.subplot(3, 1, 2, sharex = ax1)
         spikes_mean = np.mean(raster, axis=0)
-        plt.imshow(raster, cmap='Greys', origin='lower', aspect='auto')
+        plt.imshow(raster, cmap='Greys', origin='lower', aspect='auto', extent=(0, 0.15, -1, 1))
 
     else:
         plt.subplot(3, 1, 2, sharex=ax1)
